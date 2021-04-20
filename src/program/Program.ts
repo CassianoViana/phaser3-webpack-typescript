@@ -304,8 +304,8 @@ export default class Program {
 
 export function getProgramColor(key: string) {
   let progColors = []
-  progColors['prog_0'] = 0x009688
-  progColors['prog_1'] = 0xffc107
-  progColors['prog_2'] = 0xff5722
+  progColors['prog_0'] = 0xddffdd
+  progColors['prog_1'] = 0xf6d155
+  progColors['prog_2'] = 0xf2552c
   return progColors[key]
 }
