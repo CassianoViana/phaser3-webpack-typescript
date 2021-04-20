@@ -599,7 +599,7 @@ export default class Game extends Scene {
     // prog0.clear()
     // prog1.clear()
     // prog2.clear()
-    // this.codeEditor.addCommands(prog0, ['prog_1', 'prog_0', 'arrow-right'])
+    // this.codeEditor.addCommands(prog0, ['arrow-right','prog_1', 'prog_0','prog_2'])
     // this.codeEditor.addCommands(prog1, ['arrow-up'])
     // this.codeEditor.addCommands(prog2, ['arrow-right', 'arrow-up', 'arrow-up', 'arrow-right', 'prog_1'])
   }

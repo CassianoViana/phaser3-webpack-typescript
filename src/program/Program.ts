@@ -33,6 +33,7 @@ export default class Program {
 
   animate() {
     if (!this.animated) {
+      this.dropZone.highlight()
       if (this.programNameImage) {
         this.programNameImage.scale += 0.1
         this.programNameImage.rotation += 0.05
@@ -43,6 +44,7 @@ export default class Program {
 
   disanimate() {
     if (this.animated) {
+      this.dropZone.highlight(false)
       if (this.programNameImage) {
         this.programNameImage.scale -= 0.1
         this.programNameImage.rotation -= 0.05
@@ -302,8 +304,8 @@ export default class Program {
 
 export function getProgramColor(key: string) {
   let progColors = []
-  progColors['prog_0'] = 0xe31c61
-  progColors['prog_1'] = 0xffb03a
-  progColors['prog_2'] = 0x3dc2a2
+  progColors['prog_0'] = 0x009688
+  progColors['prog_1'] = 0xffc107
+  progColors['prog_2'] = 0xff5722
   return progColors[key]
 }
