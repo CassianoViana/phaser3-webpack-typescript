@@ -27,23 +27,26 @@ export default class Program {
     this.ordinalCommands = new Array();
     this.conditionalCommandsIndexed = new Map<number, Command>();
     this.dropZone = createDropZone(this.grid, x, y, width, height, spriteKey);
+    this.dropZone.sprite.setTint(getProgramColor(name))
     this.sprite = this.dropZone.sprite;
-    let imgWidth = width / 3.6;
-    this.programNameImage = this.grid.addImage(x - imgWidth * 0.7, y, `${name}_fnName`, imgWidth*.7);
   }
 
   animate() {
     if (!this.animated) {
-      this.programNameImage.scale += 0.1
-      this.programNameImage.rotation += 0.05
+      if (this.programNameImage) {
+        this.programNameImage.scale += 0.1
+        this.programNameImage.rotation += 0.05
+      }
       this.animated = true;
     }
   }
 
   disanimate() {
     if (this.animated) {
-      this.programNameImage.scale -= 0.1
-      this.programNameImage.rotation -= 0.05
+      if (this.programNameImage) {
+        this.programNameImage.scale -= 0.1
+        this.programNameImage.rotation -= 0.05
+      }
       this.animated = false;
     }
   }
@@ -256,7 +259,7 @@ export default class Program {
 
   setDepth(depth: number) {
     this.sprite.setDepth(depth);
-    this.programNameImage.setDepth(depth);
+    this.programNameImage?.setDepth(depth);
   }
 
   stringfyOrdinalCommands(): string {
@@ -295,4 +298,12 @@ export default class Program {
   dragover() {
     this.dropZone?.dragover();
   }
+}
+
+export function getProgramColor(key: string) {
+  let progColors = []
+  progColors['prog_0'] = 0xe31c61
+  progColors['prog_1'] = 0xffb03a
+  progColors['prog_2'] = 0x3dc2a2
+  return progColors[key]
 }

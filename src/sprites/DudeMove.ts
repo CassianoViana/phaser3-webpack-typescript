@@ -100,7 +100,7 @@ export class DudeMove {
 
   onBranchMove() {
     let onCompleteBranch = () => {
-      Logger.log('BRANCH_ON_COMPLETE [prog.name]', this.branch.program.name);
+      Logger.log('BRANCH_ON_COMPLETE [prog.name]', this.branch?.program?.name);
       this.disanimate();
     };
     const moveToContinueWhenBackToThisBranch = this.next;

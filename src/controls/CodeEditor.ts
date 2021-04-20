@@ -1,6 +1,6 @@
 import { Scene, Input, GameObjects } from 'phaser';
 import Button from './Button';
-import Program from '../program/Program';
+import Program, { getProgramColor } from '../program/Program';
 import SpriteDropZone from './SpriteDropZone';
 import Sounds from '../sounds/Sounds';
 import AlignGrid from '../geom/AlignGrid';
@@ -24,7 +24,7 @@ export default class CodeEditor {
   onInteract: () => void = () => { };
   onClickStop: () => void = () => { };
   onClickStepByStep: () => void = () => { };
-  onRemoveCommand: (command:Command) => void = () => { };
+  onRemoveCommand: (command: Command) => void = () => { };
   sounds: Sounds;
   controlsScale: number;
   scale: number
@@ -88,6 +88,20 @@ export default class CodeEditor {
     });
   }
 
+  createPieceSprite(commandName: CommandName): Command {
+    let spriteKey = commandName.toString()
+    if (commandName.startsWith('prog_')) {
+      spriteKey = 'prog_piece'
+    }
+    let sprite: GameObjects.Sprite = this.toolboxCommandsGroup.get(0, 0, spriteKey)
+    if (commandName.startsWith('prog_')) {
+      sprite.setTint(getProgramColor(commandName))
+    }
+    const command = new Command(this.scene, sprite, commandName);
+    command.setDepth(3);
+    return command;
+  }
+
   createDraggableProgramCommands(commandToRecreate: CommandName = null) {
     if (this.toolboxCommandsGroup) {
       if (!commandToRecreate) {
@@ -103,10 +117,7 @@ export default class CodeEditor {
     }
     const createdCommands: Command[] = commandNames
       .map(commandName => {
-        let sprite = this.toolboxCommandsGroup.get(0, 0, commandName)
-        const command = new Command(this.scene, sprite);
-        command.setDepth(3);
-        return command
+        return this.createPieceSprite(commandName)
       })
 
     Logger.log('COMMAND_NAMES', commandNames);

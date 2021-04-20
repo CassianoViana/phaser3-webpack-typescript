@@ -63,9 +63,7 @@ export default class Game extends Scene {
     this.load.image('prog_0', 'assets/ct/prog_0.png');
     this.load.image('prog_1', 'assets/ct/prog_1.png');
     this.load.image('prog_2', 'assets/ct/prog_2.png');
-    this.load.image('prog_0_fnName', 'assets/ct/prog_0_fnName.png');
-    this.load.image('prog_1_fnName', 'assets/ct/prog_1_fnName.png');
-    this.load.image('prog_2_fnName', 'assets/ct/prog_2_fnName.png');
+    this.load.image('prog_piece', 'assets/ct/prog_piece.png');
     this.load.image('battery', 'assets/ct/battery.png');
     this.load.image('message_box', 'assets/ct/message.png');
     this.load.image('intention_comamnd', 'assets/ct/intention_comamnd.png');
@@ -86,7 +84,7 @@ export default class Game extends Scene {
     this.load.spritesheet('btn-close-message', 'assets/ct/btn_close_message.png', { frameWidth: 68, frameHeight: 69 });
     this.load.spritesheet('btn-stop', 'assets/ct/btn_stop.png', { frameWidth: 100, frameHeight: 100 });
     this.load.spritesheet('btn-step', 'assets/ct/btn_step.png', { frameWidth: 100, frameHeight: 100 });
-    this.load.spritesheet('drop-zone', 'assets/ct/programming_zone.png', { frameWidth: 541, frameHeight: 108 });
+    this.load.spritesheet('drop-zone', 'assets/ct/programming_zone.png', { frameWidth: 649, frameHeight: 108 });
     this.load.spritesheet('tile-drop-zone', 'assets/ct/tile_drop_zone.png', { frameWidth: 79, frameHeight: 69 });
     this.load.spritesheet('sprite-rope-NORMAL', 'assets/ct/rope_walk_NORMAL.png', { frameWidth: 65, frameHeight: 89 });
     this.load.spritesheet('sprite-rope-ISOMETRIC', 'assets/ct/rope_walk_ISOMETRIC.png', { frameWidth: 97.5, frameHeight: 111 });
@@ -575,9 +573,9 @@ export default class Game extends Scene {
 
   private initializeCodeEditorProgrammingAreas() {
     if (!this.codeEditor.programs) {
-      let prog0 = new Program(this, 'prog_0', this.grid, 18.4, 11, 7, 2.3, 'drop-zone')
-      let prog1 = new Program(this, 'prog_1', this.grid, 18.4, 14.5, 7, 2.3, 'drop-zone')
-      let prog2 = new Program(this, 'prog_2', this.grid, 18.4, 18, 7, 2.3, 'drop-zone')
+      let prog0 = new Program(this, 'prog_0', this.grid, 17, 11, 8.5, 2.3, 'drop-zone')
+      let prog1 = new Program(this, 'prog_1', this.grid, 17, 14.5, 8.5, 2.3, 'drop-zone')
+      let prog2 = new Program(this, 'prog_2', this.grid, 17, 18, 8.5, 2.3, 'drop-zone')
       this.codeEditor.setPrograms([
         prog0,
         prog1,
@@ -624,5 +622,4 @@ export default class Game extends Scene {
       }
     }
   }
-
 }

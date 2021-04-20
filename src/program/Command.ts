@@ -31,8 +31,8 @@ export default class Command implements InterfaceElement {
   isMuted: boolean = false;
   hash: string;
 
-  constructor(scene: Phaser.Scene, sprite: GameObjects.Sprite) {
-    this.name = sprite.texture.key as CommandName;
+  constructor(scene: Phaser.Scene, sprite: GameObjects.Sprite, name: string = '') {
+    this.name = (name || sprite.texture.key) as CommandName;
     this.sprite = sprite;
     //this.sprite.setDepth(3);
     this.scene = scene;
@@ -187,16 +187,16 @@ export default class Command implements InterfaceElement {
 
   getAction(): CommandAction {
     let action: string = ''
-    const textureKey = this.sprite.texture.key;
-    const condition = this.condition?.sprite.texture.key
-    switch (textureKey) {
+    const thisCommandName = this.name;
+    const conditionCommandName = this.condition?.name
+    switch (thisCommandName) {
       case 'arrow-up': action = 'up'; break;
       case 'arrow-down': action = 'down'; break;
       case 'arrow-left': action = 'left'; break;
       case 'arrow-right': action = 'right'; break;
-      default: action = textureKey
+      default: action = thisCommandName
     }
-    return new CommandAction(action, condition);
+    return new CommandAction(action, conditionCommandName);
   }
 
   setPosition(x: number, y: number) {
@@ -241,7 +241,9 @@ export default class Command implements InterfaceElement {
           }
         }
       }
-      this.sprite.setTint(0xffff00);
+      if (!this.isProgCommand()) {
+        this.sprite.setTint(0xffff00);
+      }
     }
   }
 
@@ -251,7 +253,9 @@ export default class Command implements InterfaceElement {
     if (this.animated) {
       this.animated = false;
       this.sprite.rotation -= 0.05
-      this.sprite.clearTint();
+      if (!this.isProgCommand()) {
+        this.sprite.clearTint();
+      }
       this.sprite.setScale(this.sprite.scale - 0.1);
     }
   }

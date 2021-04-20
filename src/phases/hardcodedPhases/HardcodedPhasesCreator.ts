@@ -1,6 +1,6 @@
 import { Scene } from "phaser";
 import CodeEditor from "../../controls/CodeEditor";
-import { MecanicaRope, Obstaculo } from "../../ct-platform-classes/MecanicaRope";
+import { MecanicaRope } from "../../ct-platform-classes/MecanicaRope";
 import Matrix, { MatrixMode } from "../../geom/Matrix";
 import MazePhase from "../MazePhase";
 import MazePhasesLoader from "../MazePhasesLoader";
@@ -81,8 +81,8 @@ export default class HardcodedPhasesCreator {
 
     if (!isTesting) {
       let showTutorial = true;
-      phases.push(this.createPhaseToAvoidBarriers(showTutorial))
       phases.push(this.createPhaseToWalkThroughTheEdge())
+      phases.push(this.createPhaseToAvoidBarriers(showTutorial))
       phases.push(this.createPhaseWithIfTutorial())
       phases.push(this.createEasyPhaseArrowUp(showTutorial));
       phases.push(this.createEasyPhaseArrowUpTwoTimes(showTutorial));
